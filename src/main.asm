@@ -10,6 +10,7 @@ title:          db "OpenGL Game Window", 0
 
 f1:             dd 1.0
 f0.5:           dd 0.5
+f0:             dd 0.0
 
 ; Background color float values for the GL window
 bgcol_red:      dd 0.5490196078431373
@@ -92,6 +93,36 @@ gl_render:
     pushfloat bgcol_green
     pushfloat bgcol_red
     call glClearColor
+    
+    render_triangle:
+        push GL_TRIANGLES
+        call glBegin
+        
+        ; Set color to white
+        pushfloat f1 ; B
+        pushfloat f1 ; G
+        pushfloat f1 ; R
+        call glColor3f
+        
+        ; Vertex A
+        pushfloat f0
+        pushfloat f0
+        pushfloat f0
+        call glVertex3f
+        
+        ; Vertex B
+        pushfloat f0
+        pushfloat f0
+        pushfloat f1
+        call glVertex3f
+        
+        ; Vertex C
+        pushfloat f0
+        pushfloat f1
+        pushfloat f1
+        call glVertex3f
+        
+        call glEnd
     
     cdecl_end ; Restore stack
     ret
