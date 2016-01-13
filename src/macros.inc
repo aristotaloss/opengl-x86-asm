@@ -10,7 +10,7 @@
     pop ebp
 %endmacro
 
-; Convenience function for pushing a float on the stack
+; Convenience function for pushing a float onto the stack
 %macro pushfloat 1
     fld dword [%1]
     sub esp, 4
